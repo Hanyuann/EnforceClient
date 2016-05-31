@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page import="java.net.URLEncoder"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -30,8 +29,8 @@
 <script type="text/javascript">
 	function del(mc, mode) {
 		if (window.confirm("您确认删除与 " + mc + " 的关系吗？")) {
-			location.href = '${pageContext.request.contextPath}/servlet/DelEnterpriseRelationServlet?mc='
-					+ mc + '&mode=' + mode;
+			location.href = '${pageContext.request.contextPath}/servlet/DelRelationServlet?mc2='
+					+ encodeURI(encodeURI(mc)) + '&mode=' + mode + '&from=relation';
 		}
 	}
 </script>
@@ -40,7 +39,7 @@
 		if (page < 1 || page > totalpage) {
 			alert("无效的请求页码");
 		} else {
-			window.location.href = '${pageContext.request.contextPath}/servlet/EnterpriseRelationServlet?method=getAllRelation&mode='
+			window.location.href = '${pageContext.request.contextPath}/servlet/EnterpriseRelationServlet?mode='
 					+ mode + '&page=' + page;
 		}
 	}
@@ -80,10 +79,10 @@
 				</c:forEach>
 				<tr>
 					<td id="add" colspan="5"><a
-						href="${pageContext.request.contextPath }/servlet/EnterpriseRelationServlet?method=getAllRelation&mode=1">查看供应商</a>&nbsp;&nbsp;<a
-						href="${pageContext.request.contextPath }/servlet/EnterpriseRelationServlet?method=getAllRelation&mode=2">查看供应接受商</a>&nbsp;&nbsp;<a
-						href="${pageContext.request.contextPath }/servlet/EnterpriseRelationServlet?method=getAllRelation&mode=3">查看子企业</a>&nbsp;&nbsp;<a
-						href="${pageContext.request.contextPath }/servlet/EnterpriseRelationServlet?method=getAllRelation&mode=4">查看上级企业</a></td>
+						href="${pageContext.request.contextPath }/servlet/EnterpriseRelationServlet?mode=1">查看供应商</a>&nbsp;&nbsp;<a
+						href="${pageContext.request.contextPath }/servlet/EnterpriseRelationServlet?mode=2">查看供应接受商</a>&nbsp;&nbsp;<a
+						href="${pageContext.request.contextPath }/servlet/EnterpriseRelationServlet?mode=3">查看子企业</a>&nbsp;&nbsp;<a
+						href="${pageContext.request.contextPath }/servlet/EnterpriseRelationServlet?mode=4">查看上级企业</a></td>
 				</tr>
 			</table>
 			<c:choose>

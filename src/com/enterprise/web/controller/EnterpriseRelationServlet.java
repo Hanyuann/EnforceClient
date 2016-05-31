@@ -29,20 +29,12 @@ public class EnterpriseRelationServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String method = request.getParameter("method");
-		if (method.equals("getAllRelation")) {
-			getAllRelation(request, response);
-		}
-	}
-
-	private void getAllRelation(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
 		Enterprise enterprise = (Enterprise) request.getSession().getAttribute(
 				"enterprise");
 		int page = 1;
 		String mc = URLEncoder.encode(enterprise.getMc(), "UTF-8");
 		String mode = request.getParameter("mode");
-		//System.out.println(request.getParameter("page"));
+		// System.out.println(request.getParameter("page"));
 		page = request.getParameter("page") == null ? 1 : Integer
 				.parseInt(request.getParameter("page"));
 		GetMethod getMethod = new GetMethod(
@@ -82,6 +74,7 @@ public class EnterpriseRelationServlet extends HttpServlet {
 								Enterprise.class);
 						list.add(e);
 					}
+					request.setAttribute("alert", request.getAttribute("alert"));
 					request.setAttribute("list", list);
 					request.getRequestDispatcher("/WEB-INF/jsp/relation.jsp")
 							.forward(request, response);
@@ -91,6 +84,9 @@ public class EnterpriseRelationServlet extends HttpServlet {
 							.forward(request, response);
 				}
 			} else {
+				request.setAttribute("message", "没有连接到服务器！");
+				request.getRequestDispatcher("/message.jsp").forward(request,
+						response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -132,11 +128,6 @@ public class EnterpriseRelationServlet extends HttpServlet {
 		}
 
 		return pagebar;
-		/*
-		 * int pagebar[] = new int[this.totalpage]; for(int
-		 * i=1;i<=this.totalpage;i++){ pagebar[i-1] = i; } this.pagebar =
-		 * pagebar; return pagebar;
-		 */
 	}
 
 	protected void doPost(HttpServletRequest request,

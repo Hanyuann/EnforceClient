@@ -12,13 +12,13 @@
 	<body>
 		<div id="container">
 			<p>
-				<a class="a_demo_three" href="${pageContext.request.contextPath }/servlet/EnterpriseRelationServlet?method=getAllRelation&mode=1" target="main"> 业务企业 </a>
+				<a class="a_demo_three" href="${pageContext.request.contextPath }/servlet/EnterpriseRelationServlet?mode=1" target="main"> 业务企业 </a>
 			</p>
 			<p>
-				<a class="a_demo_three second_button" href="${pageContext.request.contextPath }/servlet/MyCourseServlet?username=${username }" target="main"> 建立关系</a>
+				<a class="a_demo_three second_button" href="${pageContext.request.contextPath }/servlet/AddNewRelationUIServlet" target="main"> 建立关系</a>
 			</p>
 			<p>
-				<a class="a_demo_three third_button" href="${pageContext.request.contextPath }/servlet/ClassroomManaServlet?username=${username }" target="main"> 查看申请 </a>
+				<a class="a_demo_three third_button" href="${pageContext.request.contextPath }/servlet/ApplyManaServlet" target="main"> 查看申请 </a>
 			</p>
 		</div>
 	</body>
